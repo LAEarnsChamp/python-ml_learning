@@ -5,7 +5,7 @@
 ***
 
 ## Linear Model
-给定由d个属性描述的示例x=(x1, x2, ..., xd),其中xi是x在第i个属性上的取值，线性模型试图学得一个通过属性的线性组合来进行预测的函数
+给定由d个属性描述的示例x=(x1, x2, ..., xd),其中xi是x在第i个属性上的取值，线性模型试图学得一个通过属性的线性组合来进行预测的函数  
 ![线性模型](https://upload-images.jianshu.io/upload_images/8199644-077587fee648be49.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)  
 ①使损失函数（均方误差）最小，基于这个来进行模型求解的方法称为最小二乘法，它试图找到一条直线，使所有样本到直线上的欧式距离之和最小  
 ![均方误差最小化](https://upload-images.jianshu.io/upload_images/8199644-98ab5de8f1c593b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)  
