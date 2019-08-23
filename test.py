@@ -1,20 +1,66 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
-<<<<<<< HEAD
 # test
 
 import numpy as np
 from mlmodel import models
+from numpy.random import random_sample
 
-data = np.array([
-    [-1, 1, 3],
-    [-2, 1, 5],
-    [-0, 1, 3],
-    [-2, 1, 3],
-    [-3, 1, 5],
-    [-4, 1, 7]
+# # fig = plt.figure()
+# N = 3
+# # 设椭圆中心center
+# cx = 5
+# cy = 6
+# a = 1/8.0
+# b = 4
+# X, scale = 2*a*random_sample((N,))+cx-a, 60
+# Y = [2*b*np.sqrt(1.0-((xi-cx)/a)**2)*random_sample()+cy-b*np.sqrt(1.0-((xi-cx)/a)**2) for xi in X]
+# X1, scale = 2*a*random_sample((N,))+cx-a, 60
+# Y1 = [2*b*np.sqrt(1.0-((xi-cx)/a)**2)*random_sample()+cy-b*np.sqrt(1.0-((xi-cx)/a)**2) for xi in X1]
+
+D1 = np.array([
+    [1, 1, 1],
+    [4, 4, 4]
     ])
-print(models.linear_model(data))
+D2 = np.array([
+    [2, 12, 2],
+    [4, 5, 6]
+    ])
+
+a, b, c = models.lda_bi_classification(D1, D2)
+print(a)
+print(b)
+print(c)
+# print(D1, D2)
+# m1 = np.mean(D1, axis=1)
+# m1 = m1.reshape((1, len(D1)))
+# print("m1:\n", m1)
+# m2 = np.mean(D2, axis=1)
+# m2 = m2[None, ]
+# print("m2:\n", m2)
+# SB = np.dot((m1-m2).T, (m1-m2))
+# S1 = np.dot(D1-m1.T, (D1-m1.T).T)
+# print("s1:\n", S1)
+# S2 = np.dot(D2-m2.T, (D2-m2.T).T)
+# SW = S1+S2
+# print("SB:\n", SB)
+# print("SW:\n", SW)
+# S = np.dot(np.linalg.inv(SW), SB)
+# evalue, evec = np.linalg.eig(S)
+# w = np.linalg.inv(SW) * (m1 - m2)
+# print("evalue:\n", evalue)
+# print("evec:\n", evec)
+# print("w:\n", w)
+
+# # data = np.array([
+# #     [-1, 1, 3],
+# #     [-2, 1, 5],
+# #     [-0, 1, 3],
+#     [-2, 1, 3],
+#     [-3, 1, 5],
+#     [-4, 1, 7]
+#     ])
+# print(models.linear_model(data))
 
 # import matplotlib.pyplot as plt
 # import math
@@ -160,55 +206,55 @@ print(models.linear_model(data))
 #     print("k:{} m:{}".format(k, m))
 
 
-# if __name__ == '__main__':
-#     train()
-=======
+# # if __name__ == '__main__':
+# #     train()
+# =======
 
-import numpy as np
-# import mlmodel
-# import sys
+# import numpy as np
+# # import mlmodel
+# # import sys
 
-# # data = np.array([
-# #     [154.1, 1.1],
-# #     [126, 2.2],
-# #     [70, 2.4],
-# #     [196, 2.5],
-# #     [161, 2.7],
-# #     [371, 4.4],
-# #     ])
+# # # data = np.array([
+# # #     [154.1, 1.1],
+# # #     [126, 2.2],
+# # #     [70, 2.4],
+# # #     [196, 2.5],
+# # #     [161, 2.7],
+# # #     [371, 4.4],
+# # #     ])
 
-# # feat = data[:, 0]
-# # label = data[:, -1]
-# # a = mlmodel.models.knn(2, 500.111, feat, label)
-# # print(a)
+# # # feat = data[:, 0]
+# # # label = data[:, -1]
+# # # a = mlmodel.models.knn(2, 500.111, feat, label)
+# # # print(a)
 
-# list1 = [0.4, 0.6, 1]
-# print(list(mlmodel.data_prepro.standardization(list1)))
+# # list1 = [0.4, 0.6, 1]
+# # print(list(mlmodel.data_prepro.standardization(list1)))
 
-data = np.array([
-    [80, 200],
-    [95, 230],
-    [104, 245],
-    [112,274],
-    [125, 259],
-    [135, 262]
-    ])
+# data = np.array([
+#     [80, 200],
+#     [95, 230],
+#     [104, 245],
+#     [112,274],
+#     [125, 259],
+#     [135, 262]
+#     ])
 
-feature = data[:, 0:1]
-label = np.expand_dims(data[:, -1], axis=1)
+# feature = data[:, 0:1]
+# label = np.expand_dims(data[:, -1], axis=1)
 
-k = 1
-m = 1
-weight = np.array([
-    [k],
-    [m]
-    ])
-# 拼接
-feature_matrix = np.append(feature, np.ones(shape=(6, 1)), axis=1)
-# 乘
-dmatrix = np.dot(feature_matrix, weight) - label
-# 转置
-np.dot(feature_matrix.T, dmatrix) * 2 /len(data[:, 0])
+# k = 1
+# m = 1
+# weight = np.array([
+#     [k],
+#     [m]
+#     ])
+# # 拼接
+# feature_matrix = np.append(feature, np.ones(shape=(6, 1)), axis=1)
+# # 乘
+# dmatrix = np.dot(feature_matrix, weight) - label
+# # 转置
+# np.dot(feature_matrix.T, dmatrix) * 2 /len(data[:, 0])
 
-print(feature.shape)
->>>>>>> 8b6f9b59d57657a10fd733b4114f7df3f2fa9f20
+# print(feature.shape)
+# >>>>>>> 8b6f9b59d57657a10fd733b4114f7df3f2fa9f20

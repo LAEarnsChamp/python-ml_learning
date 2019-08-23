@@ -29,6 +29,8 @@ def linear_model(data, learning_rate=0.001, loop=10000):
     data: np matrix contained features, and labels in the LAST column
     learning_rate: controlling the convergence speed
     loop: controlling the convergence speed
+
+    return: weights matrix
     """
     m = len(data)
     feature = np.append(data[:, 0:-1], np.ones(shape=(m, 1)), axis=1)
@@ -40,3 +42,30 @@ def linear_model(data, learning_rate=0.001, loop=10000):
         weights -= learning_rate * mse
 
     return weights
+
+
+def lda_bi_classification(class1, class2):
+    """
+    lda二分类模型
+    sklearn.lda is recommended
+
+    class1: data from the first class,
+    each row represents all the data of one dimension
+    class1: data from the second class,
+    each row represents all the data of one dimension
+
+    return: projection hyper-plane, eigenvalue, eigenvector
+    """
+    mean1 = np.mean(class1, axis=1)
+    mean1 = mean1.reshape((1, len(class1)))
+    mean2 = np.mean(class2, axis=1)
+    mean2 = mean2.reshape((1, len(class1)))
+    SB = np.dot((mean1-mean2).T, (mean1-mean2))
+    S1 = np.dot(class1-mean1.T, (class1-mean1.T).T)
+    S2 = np.dot(class2-mean2.T, (class2-mean2.T).T)
+    SW = S1+S2
+    S = np.dot(np.linalg.inv(SW), SB)
+    evalue, evector = np.linalg.eig(S)
+    w = np.linalg.inv(SW) * (mean1 - mean2)
+
+    return w, evalue, evector
